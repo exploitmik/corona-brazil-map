@@ -10,6 +10,14 @@ Deploy: https://corona-brazil-map.now.sh
 
 Faça o clone deste repositório e instale o [Node.js](https://nodejs.org/en/download). Recomendo o [yarn](https://yarnpkg.com) ao invés do npm, mas fica a seu critério.
 
+### Para instalar todas as dependências
+
+```
+yarn (recomendado)
+ou
+npm install
+```
+
 ### Para executar em modo de desenvolvimento
 
 ```
