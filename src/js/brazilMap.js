@@ -41,7 +41,7 @@ export default function brazilMap(){
 	  .projection(projection);
 
 	d3_queue.queue()
-		.defer(d3.json, "https://gist.githubusercontent.com/ruliana/1ccaaab05ea113b0dff3b22be3b4d637/raw/196c0332d38cb935cfca227d28f7cecfa70b412e/br-states.json")
+		.defer(d3.json, "https://raw.githubusercontent.com/exploitmik/corona-brazil-map/master/src/db/br-states.json")
 		.await(ready);
 
 	function ready(error, shp) {
