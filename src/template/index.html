@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<meta name="description" content="Mapa do Brasil com Informações sobre o Corona Vírus em cada Estado Brasileiro">
+	<meta name="keywords" content="mapa, brasil, capitais, estados, informações, coronavirus, corona, vírus, pandemia">
+	<meta charset="utf-8">
+	<title>Corona Brazil Map</title>
+</head>
+<body>
+
+	<div class="loading">
+		<div class="loading__spinner"></div>
+	</div>
+
+	<svg id="mapBrazil"></svg>
+
+	<div class="toast">
+		<p class="toast__item toast__title" data-slot=""></p>
+		<p class="toast__item toast__cities" data-slot="Municípios"></p>
+		<p class="toast__item toast__confirmed" data-slot="Confirmados"></p>
+		<p class="toast__item toast__suspects" data-slot="Suspeitos"></p>
+		<p class="toast__item toast__death" data-slot="Óbitos"></p>
+	</div>
+
+	<footer class="footer">
+		<span class="footer__last-att">Última atualização: </span>
+		<button class="footer__close"></button>
+		<div class="container footer__content">
+			<div class="footer__body">
+				<span class="footer__body-tag">Confirmados</span>
+				<p class="footer__body-data confirmed">0</p>
+			</div>
+			<div class="footer__body">
+				<span class="footer__body-tag">Suspeitos</span>
+				<p class="footer__body-data suspects">0</p>
+			</div>
+			<div class="footer__body">
+				<span class="footer__body-tag">Óbitos</span>
+				<p class="footer__body-data death">0</p>
+			</div>
+		</div>
+	</footer>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.1.1/gsap.min.js"></script>
+	<script src="https://d3js.org/d3.v3.min.js"></script>
+	<script src="https://d3js.org/d3-queue.v2.min.js"></script>
+	<script src="https://d3js.org/topojson.v1.min.js"></script>
+
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-160874663-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-160874663-1');
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+:root {
+
+  --bgColor: #e9e9e9;
+
+  --nordesteColor: #ffba5a;
+  --norteColor: #94d3ac;
+  --centroColor: #dddc92;
+  --sudesteColor: #f17e7e;
+  --sulColor: #9999ff;
+
+	--color-primary: blueviolet;
+	--text-color1: #313131;
+  --text-color2: #515151;
+	--text-color3: #818181;
+
+	--scale: 1.418;
+  --font-xss: .6rem;
+	--font-xs: .8rem;
+  --font-sm: 1rem;
+  --font-md: calc(var(--font-sm) * var(--scale));
+  --font-lg: calc(var(--font-md) * var(--scale));
+
+	--font-primary: 'Rubik', monospace;
+
+	--box-shadow: 0 11px 25px rgba(0,0,0,.07);
+
+}

@@ -1,0 +1,45 @@
+:root {
+
+	font-size: 120%;
+	font-family: var(--font-primary);
+	@include device(lg){
+		font-size: 100%;
+	}
+
+}
+
+body {
+	height: 100vh;
+	width: 100%;
+	background-color: var(--bgColor);
+	overflow: hidden;
+	position: relative;
+	display: grid;
+	place-items: center;
+}
+
+.nordeste { --color: var(--nordesteColor); }
+.norte { --color: var(--norteColor);	}
+.centro-oeste { --color: var(--centroColor); }
+.sudeste { --color: var(--sudesteColor); }
+.sul { --color: var(--sulColor); }
+
+.state {
+  fill: #f6f6f6;
+	cursor: pointer;
+
+	&.active, &:hover{
+		fill: var(--color);
+		fill-opacity: 1;
+	}
+
+	&:hover:not(.active) {
+		fill-opacity: .3;
+	}
+
+	&__contour {
+	  fill: none;
+	  stroke: #717171;
+	  stroke-linejoin: round;
+	}
+}

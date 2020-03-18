@@ -1,0 +1,67 @@
+.loading {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background: var(--bgColor);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  -webkit-animation-duration: .8s;
+  animation-duration: .8s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+
+  &__spinner {
+    width:3rem;
+    height:3rem;
+    border-radius:50%;
+    display: block;
+    border-top-color: var(--color-primary);
+    border-left-color: var(--color-primary);
+    border-bottom-color: var(--bgColor);
+    border-right-color: var(--bgColor);
+    border-style: solid;
+    border-width: 4px;
+    animation: rotate .8s infinite linear;
+    @include device(tablet){
+      position: absolute;
+      top: 40%;
+    }
+  }
+
+  &--fade-out {
+    -webkit-animation-name: fadeOut;
+    animation-name: fadeOut;
+  }
+}
+
+@keyframes rotate {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
+
+@-webkit-keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}

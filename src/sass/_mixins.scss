@@ -1,0 +1,15 @@
+@mixin device($device){
+	@if $device == sm {
+		@media (max-width: 575.98px) {
+			@content;
+		}
+	} @else if $device == md {
+		@media (max-width: 767.98px) {
+			@content;
+		}
+	} @else if $device == lg {
+		@media (max-width: 1199.98px) {
+			@content;
+		}
+	}
+}
