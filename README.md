@@ -6,6 +6,8 @@ Este projeto tem por motivação a fácil apresentação de dados sobre a pandem
 
 Deploy: https://corona-brazil-map.now.sh
 
+![Corona Brazil Map Screenshot](screenshot.png "Corona Brazil Map Screenshot")
+
 ## Como usar
 
 Faça o clone deste repositório e instale o [Node.js](https://nodejs.org/en/download). Recomendo o [yarn](https://yarnpkg.com) ao invés do npm, mas fica a seu critério.
