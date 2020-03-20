@@ -2,6 +2,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const isDevMode = process.env.NODE_ENV != "dev";
 
 module.exports = {
@@ -32,6 +33,12 @@ module.exports = {
 		],
 	},
 	plugins: [
+		new CopyWebpackPlugin([
+		  { from: 'manifest.json' },
+		  { from: 'favicon.ico' },
+		  { from: 'sw.js' },
+		  { from: 'src/images/icons', to: 'images/icons' },
+		]),
 		new MiniCssExtractPlugin({
 		  filename: '[name].css'
 		}),
@@ -40,9 +47,6 @@ module.exports = {
 			minify: {
 			  collapseWhitespace: isDevMode,
 			  removeComments: isDevMode,
-			  removeRedundantAttributes: isDevMode,
-			  removeScriptTypeAttributes: isDevMode,
-			  removeStyleLinkTypeAttributes: isDevMode,
 			  useShortDoctype: isDevMode
 			}
 		}),
