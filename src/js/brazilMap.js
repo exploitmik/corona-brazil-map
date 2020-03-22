@@ -17,8 +17,8 @@ export default function brazilMap(){
 	let stateName = document.querySelector('.toast__title');
 	let countCities = document.querySelector('.toast__cities');
 	let totalConfirmedElement = document.querySelector('.toast__confirmed');
-	let totalDeathElement = document.querySelector('.toast__death');
-	let totalSuspectsElement = document.querySelector('.toast__suspects');
+	// let totalDeathElement = document.querySelector('.toast__death');
+	// let totalSuspectsElement = document.querySelector('.toast__suspects');
 
 	const width = document.documentElement.clientWidth,
 	    	height = document.documentElement.clientHeight;
@@ -109,16 +109,16 @@ export default function brazilMap(){
 				stateName,
 				countCities,
 				totalConfirmedElement,
-				totalSuspectsElement,
-				totalDeathElement,
+				// totalSuspectsElement,
+				// totalDeathElement,
 			]);
 			return;
 		}
 
 		changeToastColor(element);
 
-		const uid = statesInfo[identifier].id;
-		const displayInfo = dataApi.values.find( state => state.uid == uid);
+		// const uid = statesInfo[identifier].id;
+		const displayInfo = dataApi.values.find( state => state.state == identifier);
 
 		timelineAnimation.duration(.9);
 		timelineAnimation.restart();
@@ -126,8 +126,8 @@ export default function brazilMap(){
 		stateName.textContent = statesInfo[identifier].name;
 		countCities.textContent = statesInfo[identifier].cities;
 		totalConfirmedElement.textContent = displayInfo.cases;
-		totalSuspectsElement.textContent = displayInfo.suspects;
-		totalDeathElement.textContent = displayInfo.deaths;
+		// totalSuspectsElement.textContent = displayInfo.suspects;
+		// totalDeathElement.textContent = displayInfo.deaths;
 	}
 
 	function resetPropertiesText(properties){
@@ -153,20 +153,23 @@ export default function brazilMap(){
 
 	function changeCaseValues({ values }){
 		const sumValues = values.reduce((a, b) => {
-      const cases = a.cases + b.cases;
-      const deaths = a.deaths + b.deaths;
-      const suspects = a.suspects + b.suspects;
-      return { cases, deaths, suspects };
+      const cases = +a.cases + +b.cases;
+      // const deaths = a.deaths + b.deaths;
+      // const suspects = a.suspects + b.suspects;
+      return { cases };
     });
 
+    // console.log(sumValues.cases);
+
 		document.querySelector('.confirmed').textContent = sumValues.cases.toLocaleString();
-		document.querySelector('.suspects').textContent = sumValues.suspects.toLocaleString();
-		document.querySelector('.death').textContent = sumValues.deaths.toLocaleString();
+		// document.querySelector('.suspects').textContent = sumValues.suspects.toLocaleString();
+		// document.querySelector('.death').textContent = sumValues.deaths.toLocaleString();
 	}
 
-	function changeLastAtt({date, time}){
+	function changeLastAtt({date_iso}){
+		const date = new Date(date_iso);
 		const lastAtt = document.querySelector('.footer__last-att');
-		lastAtt.textContent += `${date} às ${time}`;
+		lastAtt.textContent += `${date.toLocaleDateString()} às ${date.toLocaleTimeString()}`;
 	}
 
 	function updateInitialInfos(data){

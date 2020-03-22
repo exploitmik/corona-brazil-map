@@ -1,6 +1,6 @@
 export default function registerSW(){
   document.addEventListener('DOMContentLoaded', () => {
-    if ('serviceWorker' in navigator) {
+    if (process.env.NODE_ENV != 'development' && 'serviceWorker' in navigator) {
 
       navigator.serviceWorker.register('sw.js')
         .then(function (registration) {
