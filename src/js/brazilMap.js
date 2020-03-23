@@ -1,16 +1,19 @@
 import timelineAnimation from './animationToast.js';
 import { statesInfo } from '../db/statesInfo.js';
-import getDataInfo from '../db/getDataInfo.js';
+import { getDataInfo, getSecondInfo } from '../db/getDataInfo.js';
 
 export default function brazilMap(){
 
 	let dataApi;
 	getDataInfo().then( response => {
 		dataApi = response.data;
-		updateInitialInfos(dataApi);
-		document.dispatchEvent(
-			new CustomEvent("loadingfinished")
-		);
+		getSecondInfo().then( ({data}) => {
+			dataApi = {...dataApi, data }
+			updateInitialInfos(dataApi);
+			document.dispatchEvent(
+				new CustomEvent("loadingfinished")
+			);
+		});
 	});
 
 	let toastElement = document.querySelector('.toast');
@@ -161,13 +164,16 @@ export default function brazilMap(){
 
     // console.log(sumValues.cases);
 
-		document.querySelector('.confirmed').textContent = sumValues.cases.toLocaleString();
+		// document.querySelector('.confirmed').textContent = sumValues.cases.toLocaleString();
+		document.querySelector('.confirmed')
+			.textContent = dataApi.data.confirmed.value.toLocaleString();
 		// document.querySelector('.suspects').textContent = sumValues.suspects.toLocaleString();
-		// document.querySelector('.death').textContent = sumValues.deaths.toLocaleString();
+		document.querySelector('.death')
+			.textContent = dataApi.data.deaths.value.toLocaleString();
 	}
 
-	function changeLastAtt({date_iso}){
-		const date = new Date(date_iso);
+	function changeLastAtt({data}){
+		const date = new Date(data.lastUpdate);
 		const lastAtt = document.querySelector('.footer__last-att');
 		lastAtt.textContent += `${date.toLocaleDateString()} às ${date.toLocaleTimeString()}`;
 	}

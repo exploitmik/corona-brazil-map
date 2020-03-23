@@ -1,6 +1,11 @@
-import { api } from '../services/api';
+import { api1, api2 } from '../services/api';
 
-export default async function getDataInfo(){
-  const response = await api.get('/');
+export async function getDataInfo(){
+  const response = await api1.get('/');
+  return response;
+}
+
+export async function getSecondInfo(){
+  const response = await api2.get('/');
   return response;
 }
