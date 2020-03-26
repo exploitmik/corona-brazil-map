@@ -5,20 +5,23 @@ import { getDataInfo, getSecondInfo } from '../db/getDataInfo.js';
 export default function brazilMap(){
 
 	let dataApi;
-	getDataInfo().then( response => {
-		dataApi = response.data;
-		getSecondInfo().then( ({data}) => {
-			dataApi = {...dataApi, data }
-			updateInitialInfos(dataApi);
-			document.dispatchEvent(
-				new CustomEvent("loadingfinished")
-			);
-		});
+	Promise.all([
+			getDataInfo(),
+			getSecondInfo(),
+	]).then( response => {
+
+		const [ responseFirst, responseSecond ] = response;
+		dataApi = { ...responseFirst['data'], ...responseSecond['data'] };
+		updateInitialInfos(dataApi);
+		document.dispatchEvent(
+			new CustomEvent("loadingfinished")
+		);
+
 	});
 
 	let toastElement = document.querySelector('.toast');
 	let stateName = document.querySelector('.toast__title');
-	let countCities = document.querySelector('.toast__cities');
+	// let countCities = document.querySelector('.toast__cities');
 	let totalConfirmedElement = document.querySelector('.toast__confirmed');
 	// let totalDeathElement = document.querySelector('.toast__death');
 	// let totalSuspectsElement = document.querySelector('.toast__suspects');
@@ -110,7 +113,7 @@ export default function brazilMap(){
 			timelineAnimation.reverse();
 			resetPropertiesText([
 				stateName,
-				countCities,
+				// countCities,
 				totalConfirmedElement,
 				// totalSuspectsElement,
 				// totalDeathElement,
@@ -127,7 +130,7 @@ export default function brazilMap(){
 		timelineAnimation.restart();
 
 		stateName.textContent = statesInfo[identifier].name;
-		countCities.textContent = statesInfo[identifier].cities;
+		// countCities.textContent = statesInfo[identifier].cities;
 		totalConfirmedElement.textContent = displayInfo.cases;
 		// totalSuspectsElement.textContent = displayInfo.suspects;
 		// totalDeathElement.textContent = displayInfo.deaths;
@@ -166,14 +169,14 @@ export default function brazilMap(){
 
 		// document.querySelector('.confirmed').textContent = sumValues.cases.toLocaleString();
 		document.querySelector('.confirmed')
-			.textContent = dataApi.data.confirmed.value.toLocaleString();
+			.textContent = dataApi.confirmed.value.toLocaleString();
 		// document.querySelector('.suspects').textContent = sumValues.suspects.toLocaleString();
 		document.querySelector('.death')
-			.textContent = dataApi.data.deaths.value.toLocaleString();
+			.textContent = dataApi.deaths.value.toLocaleString();
 	}
 
-	function changeLastAtt({data}){
-		const date = new Date(data.lastUpdate);
+	function changeLastAtt({lastUpdate}){
+		const date = new Date(lastUpdate);
 		const lastAtt = document.querySelector('.footer__last-att');
 		lastAtt.textContent += `${date.toLocaleDateString()} às ${date.toLocaleTimeString()}`;
 	}
