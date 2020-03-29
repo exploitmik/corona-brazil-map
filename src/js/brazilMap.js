@@ -109,7 +109,7 @@ export default function brazilMap(){
 	async function changeInfos(identifier, element){
 
 		if ( identifier == null) {
-			timelineAnimation.duration(.02);
+			timelineAnimation.timeScale(10);
 			timelineAnimation.reverse();
 			resetPropertiesText([
 				stateName,
@@ -126,7 +126,7 @@ export default function brazilMap(){
 		// const uid = statesInfo[identifier].id;
 		const displayInfo = dataApi.values.find( state => state.state == identifier);
 
-		timelineAnimation.duration(.9);
+		timelineAnimation.timeScale(1);
 		timelineAnimation.restart();
 
 		stateName.textContent = statesInfo[identifier].name;

@@ -7,7 +7,7 @@ export default function loadSpinner(){
 		setTimeout( () => {
 			loading.classList.remove('loading--fade-out');
 			loading.style.display = 'none';
-		}, 1000);
+		}, 500);
 	});
 	
 }
